@@ -1,21 +1,10 @@
-on:
-  workflow_dispatch:
-    inputs:
-      tag:
-        description: "The tag version you want to build"
-  push:
-    paths:
-      - "v2ray.sh"
-      - "Dockerfile"
-      - ".github/workflows/docker-push.yml"
-  pull_request:
-    types: [opened, synchronize, reopened]
-    paths:
-      - "v2ray.sh"
-      - "Dockerfile"
-      - ".github/workflows/docker-push.yml"
-
 name: docker push
+
+on:  
+  push:
+    tags:
+      - '*'
+
 jobs:
   build:
     runs-on: ubuntu-latest
